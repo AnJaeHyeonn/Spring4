@@ -49,8 +49,8 @@
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
 			<scope>test</scope>
-		</dependency>
-		
+		</dependency>		
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -153,6 +153,8 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+
+		
 	</dependencies>
 	<build>
 		<plugins>
