@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ajh.s4.board.BoardDTO;
+import com.ajh.s4.util.Pager;
 
 @Controller
 @RequestMapping("/notice/**")
@@ -23,15 +24,15 @@ public class NoticeController {
 		return "notice";
 	}
 
-	// @RequestMapping(value = "list", method = RequestMethod.GET) 아래랑 똑같은 것
 	@GetMapping("list")
-	public ModelAndView getList() throws Exception {
+	public ModelAndView getList(Pager pager) throws Exception {
+
+		List<BoardDTO> ar = noticeService.getList(pager);
 
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/list");
-
-		List<BoardDTO> ar = noticeService.getList();
+		mv.addObject("pager", pager);
 		mv.addObject("list", ar);
+		mv.setViewName("board/list");
 
 		return mv;
 

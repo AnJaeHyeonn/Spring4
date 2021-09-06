@@ -2,10 +2,12 @@ package com.ajh.s4.board;
 
 import java.util.List;
 
+import com.ajh.s4.util.Pager;
+
 public interface BoardService {
 
 	// List
-	public abstract List<BoardDTO> getList() throws Exception;
+	public abstract List<BoardDTO> getList(Pager pager) throws Exception;
 
 	// Select
 	public abstract List<BoardDTO> getSelect(BoardDTO boardDTO) throws Exception;
@@ -18,5 +20,6 @@ public interface BoardService {
 
 	// Update
 	public int setUpdate(BoardDTO boardDTO) throws Exception;
+
 
 }

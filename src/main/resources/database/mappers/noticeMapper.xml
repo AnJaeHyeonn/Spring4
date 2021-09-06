@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -21,11 +22,39 @@
 		UPDATE NOTICE SET TITLE=#{title}, CONTENTS=#{contents} WHERE NUM=#{num}
 	</update>
 	
-	<select id="getList" resultType="NoticeDTO">
-      SELECT * FROM
-      (SELECT ROWNUM R, NT.* FROM
-      (SELECT * FROM NOTICE 
-      ORDER BY NUM DESC) NT)
+	<select id="getList" resultType="NoticeDTO" parameterType="com.ajh.s4.util.Pager">
+    	SELECT * FROM (SELECT ROWNUM R, BK.* FROM (SELECT * FROM NOTICE
+		WHERE
+		<choose>
+			<when test="kind == 'title'">
+				title
+			</when>
+			<when test="kind == 'contents'">
+				contents
+			</when>
+			<otherwise>
+				writer
+			</otherwise>
+		</choose>
+		LIKE '%' || #{search} || '%' ORDER BY NUM DESC) BK)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
    </select>
+   
+   <select id="getCount" resultType="Long" parameterType="com.ajh.s4.util.Pager">
+		SELECT COUNT(NUM) FROM NOTICE
+		WHERE
+		<choose>
+			<when test="kind == 'title'">
+				title
+			</when>
+			<when test="kind == 'contents'">
+				contents
+			</when>
+			<otherwise>
+				writer
+			</otherwise>
+		</choose>
+		LIKE '%' || #{search} || '%'
+	</select>
 
 </mapper>

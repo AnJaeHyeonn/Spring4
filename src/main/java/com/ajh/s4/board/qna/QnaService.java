@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ajh.s4.board.BoardDTO;
 import com.ajh.s4.board.BoardService;
+import com.ajh.s4.util.Pager;
 
 @Service
 public class QnaService implements BoardService {
@@ -15,8 +16,13 @@ public class QnaService implements BoardService {
 	private QnaDAO qnaDAO;
 
 	@Override
-	public List<BoardDTO> getList() throws Exception {
-		return qnaDAO.getList();
+	public List<BoardDTO> getList(Pager pager) throws Exception {
+
+		Long totalCount = qnaDAO.getCount(pager);
+
+		pager.makeNum(totalCount);
+		pager.makeRow();
+		return qnaDAO.getList(pager);
 	}
 
 	@Override
