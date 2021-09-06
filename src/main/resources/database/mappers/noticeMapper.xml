@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="getList" resultType="com.ajh.s4.notice.NoticeDTO">
-		SELECT * FROM NOTICE
+		 SELECT * FROM (SELECT rownum R, NT.* FROM (SELECT * FROM NOTICE ORDER BY NUM DESC) NT) WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
 	<insert id="setInsert" parameterType="com.ajh.s4.notice.NoticeDTO">
@@ -21,6 +21,8 @@
 		DELETE NOTICE WHERE NUM=#{num}
 	</delete>
 	
-	
-	
+	<update id="setUpdate" parameterType="com.ajh.s4.notice.noticeDTO">
+		UPDATE NOTICE SET TITLE=#{title}, CONTENTS=#{contents} WHERE NUM=#{num}
+	</update>
+		
 </mapper>
