@@ -14,9 +14,9 @@
 				<li class="nav-item"><a class="nav-link active"
 					aria-current="page" href="${pageContext.request.contextPath}/">Home</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="${pageContext.request.contextPath}/notice/list">Notice List</a></li>
+					href="${pageContext.request.contextPath}/notice/list">Notice</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="${pageContext.request.contextPath}/qna/list">Qna List</a></li>
+					href="${pageContext.request.contextPath}/qna/list">Qna</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"

@@ -10,7 +10,7 @@ public interface BoardService {
 	public abstract List<BoardDTO> getList(Pager pager) throws Exception;
 
 	// Select
-	public abstract List<BoardDTO> getSelect(BoardDTO boardDTO) throws Exception;
+	public abstract BoardDTO getSelect(BoardDTO boardDTO) throws Exception;
 
 	// Insert
 	public int setInsert(BoardDTO boardDTO) throws Exception;

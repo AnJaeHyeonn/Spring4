@@ -39,4 +39,12 @@
 		LIKE '%' || #{search} || '%'
 	</select>
 	
+	<insert id="setInsert" parameterType="BoardDTO">
+		INSERT INTO QNA (NUM, TITLE, CONTENTS, WRITER, REF, STEP, DEPTH) VALUES (QNA_SEQ.NEXTVAL, #{title}, #{contents}, #{writer}, 0, 0, 0)
+	</insert>
+	
+	<select id="getSelect" parameterType="BoardDTO" resultType="QnaDTO">
+		SELECT * FROM QNA WHERE NUM=#{num}
+	</select>
+	
 </mapper>
