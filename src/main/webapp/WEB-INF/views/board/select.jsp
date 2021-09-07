@@ -12,8 +12,8 @@
 </head>
 <body>
 	<c:import url="../temp/boot_nav.jsp"></c:import>
-		<h1>${board}Board Select Page</h1>
-	
+	<h1>${board}BoardSelect Page</h1>
+
 
 	<div class="container-fluid">
 
@@ -24,8 +24,12 @@
 		<h3>REGDATE : ${dto.regdate}</h3>
 		<h3>HITS : ${dto.hits}</h3>
 
-		<a href="./delete?num=${dto.num}">Delete</a> <a
-			href="./update?num=${dto.num}">Update</a>
+		<a href="./delete?num=${dto.num}">Delete</a>
+		<a href="./update?num=${dto.num}">Update</a>
+
+		<c:if test="${board ne 'notice'}">
+			<a href="./reply?num=${dto.num}">Reply</a>
+		</c:if>
 	</div>
 </body>
 </html>
