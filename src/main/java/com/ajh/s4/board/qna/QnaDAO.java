@@ -59,5 +59,10 @@ public class QnaDAO implements BoardDAO {
 	public int setReplyUpdate(QnaDTO qnaDTO) throws Exception {
 		return sqlSession.update(NAMESPACE + "setReplyUpdate", qnaDTO);
 	}
+	
+	@Override
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setHitUpdate", boardDTO);
+	}
 
 }

@@ -55,4 +55,8 @@
 		INSERT INTO QNA (NUM, TITLE, CONTENTS, WRITER, REF, STEP, DEPTH) VALUES (QNA_SEQ.NEXTVAL, #{title}, #{contents}, #{writer}, #{ref}, #{step}, #{depth})
 	</insert>
 	
+	<update id="setHitUpdate" parameterType="BoardDTO">
+		UPDATE QNA SET HITS=HITS+1 WHERE NUM=#{num}
+	</update>
+	
 </mapper>

@@ -20,6 +20,5 @@ public interface BoardService {
 
 	// Update
 	public int setUpdate(BoardDTO boardDTO) throws Exception;
-
-
+	
 }

@@ -56,5 +56,9 @@
 		</choose>
 		LIKE '%' || #{search} || '%'
 	</select>
+	
+	<update id="setHitUpdate" parameterType="BoardDTO">
+		UPDATE NOTICE SET HITS=HITS+1 WHERE NUM=#{num}
+	</update>
 
 </mapper>

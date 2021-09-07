@@ -17,9 +17,9 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
-		
+
 		Long totalCount = noticeDAO.getCount(pager);
-		
+
 		pager.makeNum(totalCount);
 		pager.makeRow();
 		return noticeDAO.getList(pager);
@@ -27,7 +27,13 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public BoardDTO getSelect(BoardDTO boardDTO) throws Exception {
-		return noticeDAO.getSelect(boardDTO);
+
+		
+		noticeDAO.setHitUpdate(boardDTO);
+		
+		boardDTO = noticeDAO.getSelect(boardDTO);
+
+		return boardDTO;
 	}
 
 	@Override

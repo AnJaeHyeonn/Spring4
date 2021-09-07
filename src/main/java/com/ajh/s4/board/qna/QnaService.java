@@ -27,6 +27,9 @@ public class QnaService implements BoardService {
 
 	@Override
 	public BoardDTO getSelect(BoardDTO boardDTO) throws Exception {
+
+		qnaDAO.setHitUpdate(boardDTO);
+
 		return qnaDAO.getSelect(boardDTO);
 	}
 
@@ -54,10 +57,10 @@ public class QnaService implements BoardService {
 		qnaDTO.setRef(parent.getRef());
 		qnaDTO.setStep(parent.getStep() + 1);
 		qnaDTO.setDepth(parent.getDepth() + 1);
-		
+
 		// 2. Update
 		int result = qnaDAO.setReplyUpdate(parent);
-		
+
 		// 3. Insert
 		result = qnaDAO.setReply(qnaDTO);
 

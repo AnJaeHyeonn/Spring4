@@ -24,4 +24,6 @@ public interface BoardDAO {
 	// Update
 	public int setUpdate(BoardDTO boardDTO) throws Exception;
 
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception;
+
 }
