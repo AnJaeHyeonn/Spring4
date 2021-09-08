@@ -37,5 +37,7 @@
 				</div>
 			</form>			
 		</div>
+		
+		<script type="text/javascript" src="../resources/js/boardCheck.js"></script>
 </body>
 </html>
