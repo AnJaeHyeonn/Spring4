@@ -33,7 +33,7 @@
 				</div>
 				
 				<div class="mb-3 ml-0">
-				<button type="submit" class="btn btn-success">ADD</button>
+				<button type="button" class="btn btn-success">ADD</button>
 				</div>
 			</form>			
 		</div>
