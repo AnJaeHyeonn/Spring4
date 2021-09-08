@@ -3,7 +3,7 @@
  */
  
  function fn1(){
-   alert("Are you sure?");
+   alert("!!!!!!!!!!!!!");
 }
 
 let b1 = document.getElementById("b1");
