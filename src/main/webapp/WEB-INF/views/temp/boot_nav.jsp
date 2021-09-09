@@ -26,6 +26,14 @@
 						<li><a class="dropdown-item" href="#">Another action</a></li>
 						<li><a class="dropdown-item" href="#">Something else here</a></li>
 					</ul></li>
+
+				<li class="nav-item">
+					<a class="nav-link"	href="${pageContext.request.contextPath}/member/check">Join</a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link"	href="${pageContext.request.contextPath}/member/login">LogIn</a>
+				</li>
 			</ul>
 		</div>
 	</div>
