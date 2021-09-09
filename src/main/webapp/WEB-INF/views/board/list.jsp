@@ -44,18 +44,16 @@
 					<th>Date</th>
 					<th>Hits</th>
 				</tr>
-				<c:forEach items="${list}" var="dto">
+				<c:forEach items="${list}" var="dto" varStatus="i">
 					<tr>
 						<td>${dto.num}</td>
-						<td><a href="./select?num=${dto.num}">
-							<c:catch>
-							<c:forEach begin="1" end="${dto.depth}">
-								--	
-							</c:forEach>
-							</c:catch>
-							${dto.title}</a>						
-						</td>
-						<td>${dto.writer}</td>
+						<td><span class="c1" data-writer-num="${i.index}"> <c:catch>
+									<c:forEach begin="1" end="${dto.depth}">
+									--	
+								</c:forEach>
+								</c:catch> ${dto.title}
+						</span></td>
+						<td id="wr${i.index}">${dto.writer}</td>
 						<td>${dto.regdate}</td>
 						<td>${dto.hits}</td>
 					</tr>
@@ -94,8 +92,10 @@
 			<!-- Pageing -->
 
 			<a href="./insert" class="btn btn-danger">ADD</a>
+			<button id="btn">click</button>
 
 		</div>
 	</div>
+	<script type="text/javascript" src="../resources/js/list.js"></script>
 </body>
 </html>

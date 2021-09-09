@@ -1,21 +1,45 @@
 /**
  * 
  */
- 
- function fn1(){
-   alert("!!!!!!!!!!!!!");
+
+function fn1() {
+	alert("!!!!!!!!!!!!!");
 }
 
 /*let b1 = document.getElementById("b1");
 b1.addEventListener("click", fn1);*/
 
-function fn2() {
-	alert(document.getElementById("title").value);
-	alert(document.getElementById("contents").value);
-}
 
-let b1 = document.getElementById("b1");
-b1.addEventListener("click", fn2);
 
-let title = document.getElementById("title").value;
-let contents = document.getElementById("contents").value;
+const b1 = document.getElementById("b1");
+b1.addEventListener("click", function() {
+
+	const title = document.getElementById("title");
+	const writer = document.getElementById("writer");
+	const frm = document.getElementById("frm");
+	const t1 = document.getElementById("t_1");
+	const w1 = document.getElementById("w_1");
+
+	t1.innerHTML = "";
+	w1.innerHTML = "";
+
+	let t = title.value;
+	let w = writer.value;
+
+	let check = true;
+
+	if (t == "") {
+		check = false;
+		t1.innerHTML = "필수 입력";
+	}
+	if (w == "") {
+		check = false;
+		w1.innerHTML = "필수 입력";
+	}
+	if (check) {
+		frm.submit();
+	} else {
+		alert('필수 입력');
+	}
+
+});
