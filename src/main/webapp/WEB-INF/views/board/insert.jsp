@@ -32,10 +32,24 @@
   					<input type="text" class="form-control" readonly="readonly" name="writer" id="writer" value ="${member.id}">
 				</div>
 				
+				
+				<!-- button 추가 -->
 				<div class="mb-3 ml-0">
-				<button type="submit" class="btn btn-success">ADD</button>
+					<button type="button" class="btn btn-success" id="fileAdd">File Add</button>
+					<button type="button" class="del">Delete</button>
+				</div>
+				
+				<!-- input file 추가 영역 -->
+				<div id="fileAddResult">
+				
+				</div>
+				
+				<div class="mb-3 ml-0">
+					<button type="submit" class="btn btn-success">ADD</button>
 				</div>
 			</form>			
 		</div>
+		<script type="text/javascript" src="../resources/js/boardFile.js"></script>
+		
 </body>
 </html>

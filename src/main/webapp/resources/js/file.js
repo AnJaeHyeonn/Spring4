@@ -8,5 +8,5 @@ file = file + '</div>';
 
 
 $('#add').click(function() {
-	$('#files').after(file);
+	$('#addResult').append(file);
 });
