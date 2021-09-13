@@ -45,15 +45,28 @@
 				<div class="mb-3">
   					<label for="email" class="form-label">이메일을 입력하세요.</label>
   					<input type="text" class="form-control put" name="email" id="email" placeholder="EMAIL">
-				</div>			
+				</div>
+				
+				<div class="mb-3 ml-0" id="files">
+					<button type="button" class="btn btn-info" id="add">File Add</button>
+					
+				</div>
+				
+				<!-- input file 추가 영역 -->
+				<div id="addResult">
+					
+				</div>
 				
 				<div class="mb-3 ml-0">
-				<button type="submit" class="btn btn-success" id="btn">회원가입</button>
-				</div>
-			</form>			
+				<button type="button" class="btn btn-success" id="btn">회원가입</button>
+				</div>		
+	
+			</form>	
 		</div>
 		
 		<script type="text/javascript" src="../resources/js/join.js"></script>
+		<script type="text/javascript" src="../resources/js/file.js"></script>
+		
 		
 </body>
 </html>
