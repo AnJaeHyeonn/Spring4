@@ -12,7 +12,7 @@
 </head>
 <body>
 	<c:import url="../temp/boot_nav.jsp"></c:import>
-	<h1>${board}BoardSelect Page</h1>
+	<h1>${board}BoardSelectPage</h1>
 
 
 	<div class="container-fluid">
@@ -24,12 +24,17 @@
 		<h3>REGDATE : ${dto.regdate}</h3>
 		<h3>HITS : ${dto.hits}</h3>
 
-		<a href="./delete?num=${dto.num}">Delete</a>
-		<a href="./update?num=${dto.num}">Update</a>
 
+		<c:if test="${not empty member and member.id == dto.writer}">
+			<a href="./delete?num=${dto.num}">Delete</a>
+			<a href="./update?num=${dto.num}">Update</a>
+		</c:if>
+		
 		<c:if test="${board ne 'notice'}">
 			<a href="./reply?num=${dto.num}">Reply</a>
 		</c:if>
+
+
 	</div>
 </body>
 </html>

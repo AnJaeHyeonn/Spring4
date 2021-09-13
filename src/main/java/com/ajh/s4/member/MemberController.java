@@ -40,7 +40,14 @@ public class MemberController {
 
 		int result = memberService.setJoin(memberDTO);
 
-		mv.setViewName("redirect:../");
+		String message = "회원가입 실패";
+		if (result > 0) {
+			message = "회원가입 성공";
+		}
+
+		mv.addObject("msg", message);
+		mv.addObject("url", "../");
+		mv.setViewName("common/result");
 
 		return mv;
 	}
@@ -137,6 +144,9 @@ public class MemberController {
 	@GetMapping("delete")
 	public ModelAndView setDelete(MemberDTO memberDTO, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+
+		MemberDTO sessionDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO.setId(sessionDTO.getId());
 		int result = memberService.setDelete(memberDTO);
 		session.invalidate();
 		mv.setViewName("redirect:../");
