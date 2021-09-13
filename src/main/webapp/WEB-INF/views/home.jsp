@@ -20,6 +20,8 @@
 	<c:if test="${empty member}">
 		<h3>Login을 하기 전 보이는 문장</h3>
 	</c:if>
+	
+	<h1>Comflict</h1>
 
 </body>
 </html>
