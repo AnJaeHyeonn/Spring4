@@ -47,14 +47,12 @@
 				<c:forEach items="${list}" var="dto">
 					<tr>
 						<td>${dto.num}</td>
-						<td><a href="./select?num=${dto.num}">
-							<c:catch>
-							<c:forEach begin="1" end="${dto.depth}">
+						<td><a href="./select?num=${dto.num}"> <c:catch>
+									<c:forEach begin="1" end="${dto.depth}">
 								--	
 							</c:forEach>
-							</c:catch>
-							${dto.title}</a>						
-						</td>
+								</c:catch> ${dto.title}
+						</a></td>
 						<td>${dto.writer}</td>
 						<td>${dto.regdate}</td>
 						<td>${dto.hits}</td>
@@ -93,7 +91,9 @@
 			</nav>
 			<!-- Pageing -->
 
-			<a href="./insert" class="btn btn-danger">ADD</a>
+			<c:if test="${not empty member}">
+				<a href="./insert" class="btn btn-danger">ADD</a>
+			</c:if>
 
 		</div>
 	</div>

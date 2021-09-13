@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="container-fluid">
@@ -27,13 +29,27 @@
 						<li><a class="dropdown-item" href="#">Something else here</a></li>
 					</ul></li>
 
-				<li class="nav-item">
-					<a class="nav-link"	href="${pageContext.request.contextPath}/member/check">Join</a>
-				</li>
-				
-				<li class="nav-item">
-					<a class="nav-link"	href="${pageContext.request.contextPath}/member/login">LogIn</a>
-				</li>
+				<c:choose>
+					<c:when test="${not empty member}">
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/member/mypage">Mypage</a></li>
+
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/member/logout">LogOut</a>
+						</li>
+					</c:when>
+
+					<c:otherwise>
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/member/check">Join</a></li>
+
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/member/login">LogIn</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+
+
 			</ul>
 		</div>
 	</div>

@@ -9,6 +9,8 @@
   		<typeAlias type="com.ajh.s4.board.notice.NoticeDTO" alias="NoticeDTO"/>
   		<typeAlias type="com.ajh.s4.board.qna.QnaDTO" alias="QnaDTO"/>
   		
+  		<typeAlias type="com.ajh.s4.member.MemberDTO" alias="MemberDTO"/>
+  		
   		<typeAlias type="java.lang.Long" alias="Long"/>
   	</typeAliases>
   </configuration>
