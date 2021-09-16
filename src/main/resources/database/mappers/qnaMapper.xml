@@ -47,11 +47,11 @@
 	</insert>
 	
 	<select id="getSelect" parameterType="BoardDTO" resultMap="getSelectResult">
-		SELECT Q.*, QF.*
+		SELECT *
 		FROM QNA Q 
-   			INNER JOIN
-    		QNAFILES QF ON (Q.NUM = QF.NUM) 
-		WHERE Q.NUM = #{num}
+   			LEFT JOIN
+    		QNAFILES QF USING (NUM) 
+		WHERE NUM = #{num}
 	</select>
 	
 	<resultMap type="QnaDTO" id="getSelectResult">
@@ -65,12 +65,15 @@
 		<result column="step" property="step"/>
 		<result column="depth" property="depth"/>
 		<!-- 1:N관계, DTO내에 List가 멤버변수로 선언 -->
-		<collection property="files" javaType="List" ofType="BoardFilesDTO">
-			<id column="fileNum" property="fileNum"/>
-			<result column="num" property="num"/>
-			<result column="fileName" property="fileName"/>
-			<result column="oriName" property="oriName"/>
+		<collection property="files" javaType="List" ofType="BoardFilesDTO" resultMap="getFilesResult">
 		</collection>
+	</resultMap>
+	
+	<resultMap type="BoardFilesDTO" id="getFilesResult">
+		<id column="fileNum" property="fileNum"/>
+		<result column="num" property="num"/>
+		<result column="fileName" property="fileName"/>
+		<result column="oriName" property="oriName"/>
 	</resultMap>
 	
 	<update id="setReplyUpdate" parameterType="QnaDTO">
