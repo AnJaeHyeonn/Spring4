@@ -26,4 +26,6 @@ public interface BoardDAO {
 
 	public int setHitUpdate(BoardDTO boardDTO) throws Exception;
 
+	public int setFile(BoardFilesDTO boardFilesDTO) throws Exception;
+
 }

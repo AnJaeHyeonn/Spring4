@@ -40,7 +40,10 @@
 	</select>
 	
 	<insert id="setInsert" parameterType="BoardDTO">
-		INSERT INTO QNA (NUM, TITLE, CONTENTS, WRITER, REF, STEP, DEPTH) VALUES (QNA_SEQ.NEXTVAL, #{title}, #{contents}, #{writer}, QNA_SEQ.CURRVAL, 0, 0)
+		<selectKey order="BEFORE" resultType="Long" keyProperty="num">
+			SELECT QNA_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNA (NUM, TITLE, CONTENTS, WRITER, REF, STEP, DEPTH) VALUES (#{num}, #{title}, #{contents}, #{writer}, QNA_SEQ.CURRVAL, 0, 0)
 	</insert>
 	
 	<select id="getSelect" parameterType="BoardDTO" resultType="QnaDTO">
@@ -58,5 +61,17 @@
 	<update id="setHitUpdate" parameterType="BoardDTO">
 		UPDATE QNA SET HITS=HITS+1 WHERE NUM=#{num}
 	</update>
+	
+	<insert id="setFile" parameterType="BoardFilesDTO">
+		INSERT INTO QNAFILES (FILENUM, NUM, FILENAME, ORINAME) VALUES (FILES_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
+	</insert>
+	
+	<select id="getFiles" parameterType="BoardDTO" resultType="BoardFilesDTO">
+		SELECT * FROM QNAFILES WHERE NUM=#{num}
+	</select>
+	
+	<delete id="setDelete" parameterType="BoardDTO">
+		DELETE QNA WHERE NUM=#{num}
+	</delete>
 	
 </mapper>

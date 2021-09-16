@@ -23,4 +23,12 @@
 		DELETE MEMBER WHERE ID=#{id}
 	</delete>
 	
+	<insert id="setFileInsert" parameterType="MemberFilesDTO">
+		INSERT INTO MEMBERFILES (NUM, ID, FILENAME, ORINAME) VALUES (FILES_SEQ.NEXTVAL, #{id}, #{fileName}, #{oriName})
+	</insert>
+	
+	<select id="getFile" parameterType="MemberDTO" resultType="MemberFilesDTO">
+		SELECT * FROM MEMBERFILES WHERE ID=#{id}
+	</select>
+	
 </mapper>

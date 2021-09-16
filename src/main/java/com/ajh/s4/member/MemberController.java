@@ -1,5 +1,7 @@
 package com.ajh.s4.member;
 
+import java.io.InputStream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ajh.s4.board.BoardDTO;
@@ -35,10 +38,11 @@ public class MemberController {
 	}
 
 	@PostMapping("join")
-	public ModelAndView setInsert(MemberDTO memberDTO) throws Exception {
+	public ModelAndView setInsert(MemberDTO memberDTO, MultipartFile photo, HttpSession session) throws Exception {
+
 		ModelAndView mv = new ModelAndView();
 
-		int result = memberService.setJoin(memberDTO);
+		int result = memberService.setJoin(memberDTO, photo, session);
 
 		String message = "회원가입 실패";
 		if (result > 0) {
@@ -114,8 +118,13 @@ public class MemberController {
 	}
 
 	@GetMapping("mypage")
-	public ModelAndView mypage() throws Exception {
+	public ModelAndView mypage(HttpSession session) throws Exception {
+
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		MemberFilesDTO memberFilesDTO = memberService.getFile(memberDTO);
+
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("files", memberFilesDTO);
 		mv.setViewName("member/mypage");
 		return mv;
 	}

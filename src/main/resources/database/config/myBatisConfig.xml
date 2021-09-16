@@ -6,10 +6,12 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="com.ajh.s4.board.BoardDTO" alias="BoardDTO"/>
+  		<typeAlias type="com.ajh.s4.board.BoardFilesDTO" alias="BoardFilesDTO"/>
   		<typeAlias type="com.ajh.s4.board.notice.NoticeDTO" alias="NoticeDTO"/>
   		<typeAlias type="com.ajh.s4.board.qna.QnaDTO" alias="QnaDTO"/>
   		
   		<typeAlias type="com.ajh.s4.member.MemberDTO" alias="MemberDTO"/>
+  		<typeAlias type="com.ajh.s4.member.MemberFilesDTO" alias="MemberFilesDTO"/>
   		
   		<typeAlias type="java.lang.Long" alias="Long"/>
   	</typeAliases>
