@@ -3,12 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ajh.s4.member.MemberDAO">
+	<resultMap type="MemberDTO" id="getLoginResult">
+		<id column="id" property="id"/>
+		<result column="pw" property="pw"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="email" property="email"/>
+		<!-- 1:1관계, DTO내에 다른 DTO 하나가 매개변수로 선언 -->
+		<association property="memberFilesDTO" javaType="MemberFilesDTO">
+			<id column="num" property="num"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</association>
+	</resultMap>
+	
 	<select id="getIdCheck" parameterType="MemberDTO" resultType="MemberDTO">
 		SELECT ID FROM MEMBER WHERE ID=#{id}
 	</select>
 	
-	<select id="getLogin" parameterType="MemberDTO" resultType="MemberDTO">
-		SELECT * FROM MEMBER WHERE ID=#{id} and PW=#{pw}
+	<select id="getLogin" parameterType="MemberDTO" resultMap="getLoginResult">
+		SELECT *
+		FROM MEMBER M 
+    		 INNER JOIN
+   			 MEMBERFILES MF USING(ID)
+		WHERE ID=#{id} AND PW=#{pw}
 	</select>
 	
 	<insert id="setJoin" parameterType="MemberDTO">

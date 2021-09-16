@@ -76,7 +76,7 @@ public class NoticeController {
 		List<BoardFilesDTO> ar = noticeService.getFiles(boardDTO);
 
 		mv.addObject("dto", boardDTO);
-		mv.addObject("fileList", ar);
+		// mv.addObject("fileList", ar);
 
 		mv.setViewName("board/select");
 
@@ -96,9 +96,7 @@ public class NoticeController {
 
 		mv.addObject("msg", message);
 		mv.addObject("url", "./list");
-		
-		
-		
+
 		mv.setViewName("common/result");
 
 		return mv;

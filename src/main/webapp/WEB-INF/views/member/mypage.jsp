@@ -17,7 +17,7 @@
 	<h1>ID : ${member.id}</h1>
 	<h1>Email : ${member.email}</h1>
 	<div>
-		<img alt="" src="../resources/upload/member/${files.fileName}">
+		<img alt="" src="../resources/upload/member/${member.memberFilesDTO.fileName}">
 	</div>
 
 	<a href="./update" class="btn btn-danger">정보 수정</a>
