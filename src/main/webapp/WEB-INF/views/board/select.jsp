@@ -19,14 +19,16 @@
 
 		<h3>Num : ${dto.num}</h3>
 		<h3>Title : ${dto.title}</h3>
-		<h3>Contents : ${dto.contents}</h3>
+		<div>
+			${dto.contents}
+		</div>
 		<h3>WRITER : ${dto.writer}</h3>
 		<h3>REGDATE : ${dto.regdate}</h3>
 		<h3>HITS : ${dto.hits}</h3>
 
 		<c:forEach items="${dto.files}" var="f">
 			<div>
-				<img alt="" src="../resources/upload/${board}/${f.fileName}">
+				<a href="./down?fileName=${f.fileName}">${f.oriName}</a>
 			</div>
 		</c:forEach>
 		
