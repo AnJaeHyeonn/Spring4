@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ajh.s4.board.BoardDTO;
 import com.ajh.s4.board.BoardFilesDTO;
 import com.ajh.s4.board.BoardService;
+import com.ajh.s4.board.CommentsDTO;
 import com.ajh.s4.util.FileManager;
 import com.ajh.s4.util.Pager;
 
@@ -89,5 +90,12 @@ public class NoticeService implements BoardService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	public int setComments(CommentsDTO commentsDTO) throws Exception {
+		return noticeDAO.setComments(commentsDTO);
+	}
+	
+	public List<CommentsDTO> getCommnets(BoardDTO boardDTO) throws Exception {
+		return noticeDAO.getComments(boardDTO);
+	}
 }

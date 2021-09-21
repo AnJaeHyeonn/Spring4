@@ -21,6 +21,7 @@
 		<h3>Login을 하기 전 보이는 문장</h3>
 	</c:if>
 	
+	<h1 id="ar"></h1>
 	<button id="btn">CLICK</button>
 	
 	<script type="text/javascript">
@@ -29,7 +30,10 @@
 		// 위에가 아래로 바뀜
 	
 		$("#btn").click(function(){
-			alert("얍");
+			$.get("./ajax/t1?num=1", function(result) {
+				console.log(result.trim());
+				$('#ar').html(result.trim());
+			});
 		});
 	</script>
 </body>

@@ -99,5 +99,4 @@
 	<delete id="setDelete" parameterType="BoardDTO">
 		DELETE QNA WHERE NUM=#{num}
 	</delete>
-	
 </mapper>

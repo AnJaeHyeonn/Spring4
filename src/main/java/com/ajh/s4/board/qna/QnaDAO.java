@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ajh.s4.board.BoardDAO;
 import com.ajh.s4.board.BoardDTO;
 import com.ajh.s4.board.BoardFilesDTO;
+import com.ajh.s4.board.CommentsDTO;
 import com.ajh.s4.util.Pager;
 
 @Repository
@@ -73,5 +74,4 @@ public class QnaDAO implements BoardDAO {
 	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "getFiles", boardDTO);
 	}
-
 }

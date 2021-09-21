@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ajh.s4.board.BoardDTO;
 import com.ajh.s4.board.BoardFilesDTO;
+import com.ajh.s4.board.CommentsDTO;
 import com.ajh.s4.member.MemberDTO;
 import com.ajh.s4.util.Pager;
 
@@ -74,8 +75,10 @@ public class NoticeController {
 		boardDTO = noticeService.getSelect(boardDTO);
 
 		List<BoardFilesDTO> ar = noticeService.getFiles(boardDTO);
+		List<CommentsDTO> comments = noticeService.getCommnets(boardDTO);
 
 		mv.addObject("dto", boardDTO);
+		mv.addObject("list", comments);	
 		// mv.addObject("fileList", ar);
 
 		mv.setViewName("board/select");
@@ -101,13 +104,24 @@ public class NoticeController {
 
 		return mv;
 	}
-	
+
 	@GetMapping("down")
-	public ModelAndView fileDown(BoardFilesDTO boardFilesDTO) throws Exception{
+	public ModelAndView fileDown(BoardFilesDTO boardFilesDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto", boardFilesDTO);
+
+		mv.setViewName("fileDown");
+		return mv;
+	}
+
+	@PostMapping("comment")
+	public ModelAndView setComment(CommentsDTO commentsDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		commentsDTO.setBoard("N");
+		int result = noticeService.setComments(commentsDTO);
 		
-		mv.setViewName("fileDown");		
+		//mv.setViewName("redirect:./?num="+commentsDTO.getNum());
+
 		return mv;
 	}
 

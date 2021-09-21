@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ajh.s4.board.BoardDTO;
 import com.ajh.s4.board.BoardFilesDTO;
 import com.ajh.s4.board.BoardService;
+import com.ajh.s4.board.CommentsDTO;
 import com.ajh.s4.util.FileManager;
 import com.ajh.s4.util.Pager;
 
@@ -106,5 +107,4 @@ public class QnaService implements BoardService {
 
 		return result;
 	}
-
 }
