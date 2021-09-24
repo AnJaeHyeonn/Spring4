@@ -111,5 +111,9 @@
 	<update id="setCommentUpdate" parameterType="CommentsDTO">
 		UPDATE COMMENTS SET CONTENTS=#{contents} WHERE COMMENTNUM=#{commentNum}
 	</update>
+	
+	<delete id="setFileDelete" parameterType="BoardFilesDTO">
+		DELETE NOTICEFILES WHERE FILENUM=#{fileNum}
+	</delete>
 
 </mapper>

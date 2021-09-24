@@ -77,14 +77,18 @@ public class NoticeDAO implements BoardDAO {
 	public Long getCommentCount(CommentsDTO commentsDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getCommentCount", commentsDTO);
 	}
-	
-	public int setDeleteComments (CommentsDTO commentsDTO) throws Exception {
-		return sqlSession.delete(NAMESPACE+"setDeleteComments", commentsDTO);
+
+	public int setDeleteComments(CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "setDeleteComments", commentsDTO);
 	}
-	
+
 	public int setCommentUpdate(CommentsDTO commentsDTO) throws Exception {
-		return sqlSession.update(NAMESPACE+"setCommentUpdate", commentsDTO);
-		
+		return sqlSession.update(NAMESPACE + "setCommentUpdate", commentsDTO);
+
+	}
+
+	public int setFileDelete(BoardFilesDTO boardFilesDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "setFileDelete", boardFilesDTO);
 	}
 
 }

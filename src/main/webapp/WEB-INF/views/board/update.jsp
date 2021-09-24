@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${board} Update here</title>
 
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -17,19 +17,18 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-
 </head>
 <body>
 
 <c:import url="../temp/boot_nav.jsp"></c:import>
-	<h1>${board}Board Insert Page</h1>
+	<h1>${board} Update Page</h1>
 
 		<div class="container-fluid">
-			<form class="col-md-5 mx-auto" action="./insert" method="post" enctype="multipart/form-data">
+			<form class="col-md-5 mx-auto" action="./update" method="post" enctype="multipart/form-data">
 			
 				<div class="mb-3">
   					<label for="title" class="form-label">Title</label>
-  					<input type="text" class="form-control" name="title" id="title" placeholder="Input Title">
+  					<input type="text" class="form-control" name="title" id="title" value="${dto.title}">
 				</div>
 				
 				<div class="mb-3">
@@ -37,14 +36,22 @@
   					<input type="text" class="form-control" readonly="readonly" name="writer" id="writer" value ="${member.id}">
 				</div>
 				
+				
 				<div class="mb-3">
 					<label for="contents" class="form-label">Contents</label>
-  					<textarea class="form-control" placeholder="Input Contents" name="contents" id="contents"></textarea>
+  					<textarea class="form-control" placeholder="Input Contents" name="contents" id="contents">${dto.contents}</textarea>
   				</div>
 				
-				
-				
-				
+				<div>
+					<c:forEach items="${dto.files}" var="f">
+						<div>
+							${f.oriName}<span class="fileDelete" data-files-num="${f.fileNum}" data-files-name="${f.fileName}">X</span>
+						</div>
+					</c:forEach>
+				</div>
+								
+				<hr>
+				<hr>
 				<!-- button 추가 -->
 				<div class="mb-3 ml-0">
 					<button type="button" class="btn btn-success" id="fileAdd">File Add</button>
@@ -57,16 +64,34 @@
 				</div>
 				
 				<div class="mb-3 ml-0">
-					<button type="submit" class="btn btn-success">ADD</button>
+					<button type="submit" class="btn btn-success">Update</button>
 				</div>
 			</form>			
 		</div>
-		
 		
 		<script type="text/javascript" src="../resources/js/boardFile.js"></script>
 		<script type="text/javascript">
 		
 	  		$('#contents').summernote();
+	  		
+	  		$('.fileDelete').click(function() {
+	  			let fileNum = $(this).attr("data-files-num");
+	  			let fileName = $(this).attr("data-files-name");
+	  			let selector = $(this);
+	  			
+	  			$.ajax({
+	  				type : "POST",
+	  				url : "./fileDelete",
+	  				data : {fileNum:fileNum, fileName:fileName},
+	  				success : function(result) {
+	  					console.log(result);
+	  					selector.parent().remove();
+	  					updateFlag();
+	  				} 
+	  			});
+	  		});
+	  		
+	  		setFlag('${dto.files.size()}');
 
 		</script>
 

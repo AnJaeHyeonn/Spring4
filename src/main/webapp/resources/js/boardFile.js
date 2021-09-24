@@ -13,6 +13,14 @@
 let flag = 0;
 // let index = 0;
 
+function setFlag (c){ 
+	flag = c;
+};
+
+function updateFlag () {
+	flag--;
+}
+
 $('#fileAdd').click(function() {
 
 	/*index++;
@@ -42,3 +50,4 @@ $("#fileAddResult").on('click', '.del', function() {
 	
 	flag--;
 });
+
