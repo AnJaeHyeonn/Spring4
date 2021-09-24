@@ -1,6 +1,7 @@
 package com.ajh.s4.board.notice;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -95,7 +96,21 @@ public class NoticeService implements BoardService {
 		return noticeDAO.setComments(commentsDTO);
 	}
 	
-	public List<CommentsDTO> getCommnets(BoardDTO boardDTO) throws Exception {
-		return noticeDAO.getComments(boardDTO);
+	public List<CommentsDTO> getCommnets(CommentsDTO commentsDTO, Pager pager) throws Exception {
+		pager.setPerPage(5L);
+		pager.makeRow();
+		pager.makeNum(noticeDAO.getCommentCount(commentsDTO));
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("comments", commentsDTO);
+		map.put("pager", pager);
+		return noticeDAO.getComments(map);
+	}
+	
+	public int setDeleteComments (CommentsDTO commentsDTO) throws Exception {
+		return noticeDAO.setDeleteComments(commentsDTO);
+	}
+	
+	public int setCommentUpdate (CommentsDTO commentsDTO)throws Exception {
+		return noticeDAO.setCommentUpdate(commentsDTO);
 	}
 }

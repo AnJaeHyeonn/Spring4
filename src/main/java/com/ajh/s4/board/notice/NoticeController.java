@@ -75,10 +75,10 @@ public class NoticeController {
 		boardDTO = noticeService.getSelect(boardDTO);
 
 		List<BoardFilesDTO> ar = noticeService.getFiles(boardDTO);
-		List<CommentsDTO> comments = noticeService.getCommnets(boardDTO);
+		//List<CommentsDTO> comments = noticeService.getCommnets(boardDTO);
 
 		mv.addObject("dto", boardDTO);
-		mv.addObject("list", comments);	
+		//mv.addObject("list", comments);	
 		// mv.addObject("fileList", ar);
 
 		mv.setViewName("board/select");
@@ -118,10 +118,46 @@ public class NoticeController {
 	public ModelAndView setComment(CommentsDTO commentsDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		commentsDTO.setBoard("N");
+		
 		int result = noticeService.setComments(commentsDTO);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
 		
 		//mv.setViewName("redirect:./?num="+commentsDTO.getNum());
 
+		return mv;
+	}
+	
+	@GetMapping("getCommentList")
+	public ModelAndView getComments(CommentsDTO commentsDTO, Pager pager) throws Exception {
+		commentsDTO.setBoard("N");
+		List<CommentsDTO> ar = noticeService.getCommnets(commentsDTO, pager);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("comments", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("common/ajaxList");
+		
+		return mv;
+	}
+	
+	@PostMapping("commentDel")
+	public ModelAndView setDeleteComments (CommentsDTO commentsDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setDeleteComments(commentsDTO);
+		
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
+		
+		return mv;
+	}
+	
+	@PostMapping("commentUpdate")
+	public ModelAndView setCommentUpdate(CommentsDTO commentsDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setCommentUpdate(commentsDTO);
+		
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
 		return mv;
 	}
 

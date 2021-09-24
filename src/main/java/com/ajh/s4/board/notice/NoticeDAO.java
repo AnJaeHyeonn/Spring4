@@ -1,6 +1,7 @@
 package com.ajh.s4.board.notice;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,8 +70,21 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.insert(NAMESPACE + "setComments", commentsDTO);
 	}
 
-	public List<CommentsDTO> getComments(BoardDTO boardDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE + "getComments", boardDTO);
+	public List<CommentsDTO> getComments(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getComments", map);
+	}
+
+	public Long getCommentCount(CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getCommentCount", commentsDTO);
+	}
+	
+	public int setDeleteComments (CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setDeleteComments", commentsDTO);
+	}
+	
+	public int setCommentUpdate(CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setCommentUpdate", commentsDTO);
+		
 	}
 
 }

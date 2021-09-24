@@ -95,8 +95,21 @@
 		INSERT INTO COMMENTS VALUES (COMMENTS_SEQ.NEXTVAL, #{num}, #{writer}, #{contents}, sysdate, #{board})
 	</insert>
 	
-	<select id="getComments" parameterType="BoardDTO" resultType="CommentsDTO">
-		SELECT * FROM COMMENTS WHERE NUM=#{num}
+	<select id="getComments" parameterType="Map" resultType="CommentsDTO">
+		SELECT * FROM (SELECT ROWNUM R, C.* FROM (SELECT * FROM COMMENTS WHERE BOARD=#{comments.board} and NUM=#{comments.num} ORDER BY COMMENTNUM DESC) C)
+		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
 	</select>
+	
+	<select id="getCommentCount" parameterType="CommentsDTO" resultType="Long">
+		SELECT COUNT(COMMENTNUM) FROM COMMENTS WHERE BOARD=#{board} AND NUM=#{num}
+	</select>
+	
+	<delete id="setDeleteComments" parameterType="CommentsDTO">
+		DELETE COMMENTS WHERE COMMENTNUM=#{commentNum}
+	</delete>
+	
+	<update id="setCommentUpdate" parameterType="CommentsDTO">
+		UPDATE COMMENTS SET CONTENTS=#{contents} WHERE COMMENTNUM=#{commentNum}
+	</update>
 
 </mapper>

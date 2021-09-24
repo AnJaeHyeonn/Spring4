@@ -14,7 +14,7 @@ public class AjaxTestController {
 		System.out.println("t1 Test");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("common/ajaxResult");
-		mv.addObject("name", "iu");
+		mv.addObject("result", "iu");
 		System.out.println(num);
 		return mv;
 	}
